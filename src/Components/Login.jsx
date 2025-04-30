@@ -15,7 +15,7 @@ const Login=()=>{
     const handleLogin=async()=>{
 
         try{
-            const res=await axios.post(FE_DOMAIN_URL,{
+            const res=await axios.post(FE_DOMAIN_URL+"/login",{
                 emailId,
                 password
             },

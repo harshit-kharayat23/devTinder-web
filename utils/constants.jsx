@@ -1,1 +1,1 @@
-export const FE_DOMAIN_URL="http://localhost:3000/login"
+export const FE_DOMAIN_URL="http://localhost:3000"
