@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Navbar from './Components/Navbar'
 
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
   return (
     
      <div>
-      <h1 className='font-bold text-4xl text-white'>Hello Harshit!</h1>
+      <Navbar/>
      </div>
   )
 }
