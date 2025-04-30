@@ -1,14 +1,29 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { FE_DOMAIN_URL } from '../../utils/constants'
+import axios from 'axios'
+import { removeUser } from '../../utils/userSlice'
 
 const  Navbar=()=> {
 
-    const user=useSelector((store=>store.user.loggedInUser))
+  const user=useSelector((store=>store.user.loggedInUser))
+  const navigate=useNavigate();
+  const dispatch=useDispatch();
+  const handleLogOut=async()=>{
+    try{
+      const logOut=await axios.post(FE_DOMAIN_URL+"/logout",{withCredentials:true})
+      dispatch(removeUser())
+      navigate('/login')
+
+    }catch(err){
+      console.log(err)
+    }
+  }
   return (
     <div className="navbar bg-base-300 shadow-sm">
   <div className="flex-1">
-    <Link to="/" className="btn btn-ghost text-xl">🧑‍💻 devTinder</Link>
+    {user &&<Link to="/" className="btn btn-ghost text-xl">🧑‍💻 devTinder</Link>}
   </div>
   <div className="flex gap-2">
     <div className="dropdown dropdown-end mx-6">
@@ -29,7 +44,7 @@ const  Navbar=()=> {
           </Link>
         </li>
         <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li><a onClick={handleLogOut}>Logout</a></li>
       </ul>
     </div>
   </div>

@@ -8,12 +8,13 @@ import { addUser } from "../../utils/userSlice";
 import axios from "axios";
 
 const Body=()=>{
-
+    
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const userData=useSelector(store=>store.user.loggedInUser)
         const fetchUser=async()=>{
             try{
+            if(!userData)return ;
             const user=await axios.get(FE_DOMAIN_URL+"/profile/view",{withCredentials:true})
             dispatch(addUser(user.data));
         }
@@ -25,9 +26,9 @@ const Body=()=>{
     }
 }
     useEffect(()=>{
-        if(!userData){
+
         fetchUser();
-        }
+        
     },[])
    
     

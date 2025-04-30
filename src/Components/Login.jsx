@@ -9,6 +9,7 @@ const Login=()=>{
 
     const [emailId,setEmailId]=useState('harshitkharayat@gmail.com');
     const [password,setPassword]=useState('Harshit@2181');
+    const [error,setError]=useState('')
     const dispatch=useDispatch();
     const navigate=useNavigate();
     // const userInfo=useSelector((store)=>)
@@ -28,7 +29,10 @@ const Login=()=>{
         return navigate("/feed")
         
         }catch(err){ 
-            console.error(err)
+            
+            setError(err?.response?.data)
+            console.error(err?.response?.data)
+            
         }
         
     }
@@ -48,6 +52,7 @@ const Login=()=>{
             
              
                 </div>
+                <p className=' text-red-500'>{error}</p>
                 <div className="card-actions justify-center my-4">
                 <button className="btn btn-primary" onClick={handleLogin}>Login</button>
                 </div>
