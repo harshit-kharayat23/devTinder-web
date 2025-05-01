@@ -1,5 +1,5 @@
 import React from "react"
-import { useSelector } from "react-redux"
+
 const ConnectionCard=({user})=>{
 
     const {photoUrl,firstName,lastName,age,about,gender,skills}=user;
