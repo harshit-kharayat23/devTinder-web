@@ -62,7 +62,7 @@ const EditProfile = ({loggedInUser}) => {
                     <legend className="fieldset-legend ">Last Name</legend>
                     <input type="text" className="input" value={lastName}  onChange={(e)=>setlastName(e.target.value)} placeholder="Type here" />
                     <legend className="fieldset-legend ">Photo Url</legend>
-                    <input type="text" className="input" value={photoUrl}  onChange={(e)=>setPhotoUrl(e.target.value)} placeholder="Type here" />
+                    <input  type="text" className="input" value={photoUrl} onChange={(e)=>setPhotoUrl(e.target.value)} placeholder="Type here" />
                     <legend className="fieldset-legend ">Age</legend>
                     <input type="text" className="input" value={age}  onChange={(e)=>setAge(e.target.value)} placeholder="Type here" />
                     <legend className="fieldset-legend ">Gender</legend>
