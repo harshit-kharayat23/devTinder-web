@@ -24,6 +24,11 @@ const Feed=()=>{
     useEffect(()=>{
         getFeed();
     },[])
+
+    if(!feedData)return;
+    if(feedData.length==0){
+        return <p className="text-center font-bold text-3xl my-10">No Users Available</p>
+    }
     return (
         <div className="flex justify-center my-15">
            {feedData && <Card user={feedData[0]} /> }

@@ -31,10 +31,9 @@ const EditProfile = ({loggedInUser}) => {
                 about,
                 skills
             },
-            {
-                withCredentials:true
-
-            }
+            {withCredentials:true}
+            
+            
          
         );
         
