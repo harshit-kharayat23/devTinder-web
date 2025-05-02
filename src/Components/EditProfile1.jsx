@@ -1,54 +1,55 @@
-import React,{useState} from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-
-import Card from './Card';
 import { FE_DOMAIN_URL } from '../../utils/constants';
 import { addUser } from '../../utils/userSlice';
-import axios from 'axios';
+import EditProfileCard from './EdilProfileCard';
 
-const EditProfile = ({loggedInUser}) => {
-
-    
+const EditProfile1 = ({loggedInUser}) => {
 
     const dispatch=useDispatch();
-    const [firstName,setfirstName]=useState(loggedInUser.firstName);
-    const [lastName,setlastName]=useState(loggedInUser.lastName);
-    const [photoUrl,setPhotoUrl]=useState(loggedInUser.photoUrl)
-    const  [gender,setGender]=useState(loggedInUser.gender);
-    const  [age,setAge]=useState(loggedInUser.age);
-    const  [skills,setSkills]=useState(loggedInUser.skills);
-    const  [about,setAbout]=useState(loggedInUser.about);
+    const [firstName,setfirstName]=useState(loggedInUser.firstName || '');
+    const [lastName,setlastName]=useState(loggedInUser.lastName || '');
+    const [photoUrl,setPhotoUrl]=useState(loggedInUser.photoUrl || '')
+    const  [gender,setGender]=useState(loggedInUser.gender || '');
+    const  [age,setAge]=useState(loggedInUser.age || '');
+    const  [skills,setSkills]=useState(loggedInUser.skills || '' );
+    const  [about,setAbout]=useState(loggedInUser.about || '');
     const [error,setError]=useState('')
-    
-    const handleEdit=async()=>{
+    const [showToast,setShowToast]=useState(false)
 
-        try{
-            const res=await axios.patch(FE_DOMAIN_URL+"/profile/edit",{
-                firstName,
-                lastName,
-                gender,
-                age,
-                about,
-                skills
-            },
-            {withCredentials:true}
-            
-            
-         
-        );
-        
-        dispatch(addUser(res?.data))
-        
-        }catch(err){ 
-            
-            setError(err?.response?.data)
-            console.error(err?.response?.data)
-            
-        }
-        
-    }
+        const handleEdit = async () => {
+            try {
+              const response = await axios.patch(
+                FE_DOMAIN_URL + "/profile/edit",
+                {
+                  firstName,
+                  lastName,
+                  photoUrl,
+                  gender,
+                  age,
+                  about,
+                  skills,
+                },
+                { withCredentials: true }
+              );
+              console.log(response)
+              dispatch(addUser(response?.data?.data?.loggedInUser));
+              setShowToast(true);
+            setTimeout(()=>{
+                     setShowToast(false);
+                 },3000)
+            } catch (err) {
+              setError(err?.response?.data || "Something went wrong");
+              console.error(err);
+            }
+          };
+          
+    
+
   return (
-    <div className='flex justify-center my-20'>
+    <>
+         <div className='flex justify-center my-20'>
         <div className='flex justify-center gap-10'>
             <div className="card card-dash bg-base-300 w-96">
             <div className="card-body">
@@ -81,11 +82,18 @@ const EditProfile = ({loggedInUser}) => {
             </div>
         </div>  
 
-       <Card  user={{firstName,lastName,age,gender,skills,photoUrl,about}}/> 
+       <EditProfileCard  user={{firstName,lastName,age,gender,skills,photoUrl,about}}/> 
     
     </div>
-    </div>
+</div>
+            {showToast && <div className="toast toast-top toast-center">
+                <div className="alert alert-success">
+                    <span>Profile saved successfully.</span>
+                </div>    
+            </div>}
+    </>
+
   )
 }
 
-export default EditProfile
+export default EditProfile1

@@ -7,7 +7,7 @@ import ConnectionCard from './ConnectionCard'
 
 const Connections=()=>{
 
-  const connections=useSelector(store=>store.connections.data);
+  const connections=useSelector(store=>store.connections);
   const dispatch=useDispatch();
   
   const fetchConnections=async()=>{
@@ -17,7 +17,8 @@ const Connections=()=>{
           withCredentials:true,
         }
       )
-      dispatch(setUserConnections(res.data));
+      console.log(res?.data?.data)
+      dispatch(setUserConnections(res?.data?.data));
       
   }
   catch(err){
@@ -30,10 +31,16 @@ const Connections=()=>{
     fetchConnections();
 
   },[])
+  
+   
 
+  if(connections.length==0){
+    return <p className='text-center font-bold text-3xl my-10'>No Request Found !</p>
+  
+}
   return (
     <div className='flex flex-wrap gap-3 justify-center my-10'>
-       {connections && connections.map((card)=><ConnectionCard key={card._id} user={{firstName:card.firstName,lastName:card.lastName,age:card.age,photoUrl:card.photoUrl,skills:card.skills,about:card.about}} />)} 
+       {connections && connections.map((card)=><ConnectionCard key={card?._id} user={{firstName:card?.firstName,lastName:card?.lastName,age:card?.age,photoUrl:card?.photoUrl,skills:card?.skills,about:card?.about}} />)} 
     </div>
   )
 }

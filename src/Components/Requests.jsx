@@ -25,7 +25,8 @@ const Requests = () => {
     fetchRequest()
   }, [])
 
-  if(requests.length==0){
+  if (!requests) return <p className='text-center text-xl my-10'>Loading ...</p>;
+  if((requests.length)==0){
     return <p className='text-center font-bold text-3xl my-10'>No Request Found !</p>
   }
   return (
