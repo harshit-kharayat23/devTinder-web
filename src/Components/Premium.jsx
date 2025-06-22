@@ -77,7 +77,7 @@ const Premium = () => {
            <ul>
             <li>- Unlimited Likes</li>
             <li>- Chat with other People</li>
-            <li>- Blue Tick</li>
+            <li>- Blue Tick</li>ks
         
         </ul>
         <button className="btn  btn-secondary" onClick={()=>handleBuyCLick("gold")}>Buy Gold</button>

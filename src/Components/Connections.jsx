@@ -39,8 +39,9 @@ const Connections=()=>{
   
 }
   return (
-    <div className='flex flex-wrap gap-3 justify-center my-10'>
-       {connections && connections.map((card)=><ConnectionCard key={card?._id} user={{firstName:card?.firstName,lastName:card?.lastName,age:card?.age,photoUrl:card?.photoUrl,skills:card?.skills,about:card?.about}} />)} 
+    <div className='flex flex-col gap-3 items-center my-10'>
+       {connections && connections.map((card)=><ConnectionCard key={card?._id} user={{firstName:card?.firstName,lastName:card?.lastName,age:card?.age,photoUrl:card?.photoUrl,skills:card?.skills,about:card?.about,_id:card._id}} />)} 
+       
     </div>
   )
 }
