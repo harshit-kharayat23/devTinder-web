@@ -1,50 +1,88 @@
-import axios from 'axios';
-import React, { useState } from 'react'
-import { FE_DOMAIN_URL } from '../../utils/constants';
-import { useDispatch } from 'react-redux';
-import { removeRequest } from '../../utils/requestSlice';
+import axios from "axios";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeRequest } from "../../utils/requestSlice";
+import { FE_DOMAIN_URL } from "../../utils/constants";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-const RequestCard = ({user}) => {
-    const [showButtons,setShowButtons]=useState(true)
-    const {photoUrl,firstName,lastName,age,about,gender,skills,_id}=user;
-    const dispatch = useDispatch()
-    const reviewRequest=async(status,_id)=>{
+const RequestCard = ({ user }) => {
+  const [showButtons, setShowButtons] = useState(true);
+  const { photoUrl, firstName, lastName, age, about, gender, skills, _id } = user;
+  const dispatch = useDispatch();
 
-        try{
-            const res=await axios.post(FE_DOMAIN_URL+"/request/review/"+status+"/"+user?._id,
-                {},
-                {withCredentials:true},
-            )
-            dispatch(removeRequest(_id));
-            
-
-        }
-        catch(err){
-            console.log(err.message);
-        }
+  const reviewRequest = async (status, _id) => {
+    try {
+      await axios.post(
+        FE_DOMAIN_URL + "/request/review/" + status + "/" + _id,
+        {},
+        { withCredentials: true }
+      );
+      dispatch(removeRequest(_id));
+    } catch (err) {
+      console.log(err.message);
     }
+  };
 
-    return(
-        <div className=" flex bg-base-300  w-1/2 shadow-sm rounded-2xl">
-            <figure>
-            <img
-                className="rounded-[50%] my-10  w-60 mx-3"
-                src={photoUrl}
-                alt="user" />
-            </figure>
-            <div className="card-body mx-2">
-                <h2 className="card-title font-bold">{firstName+" "+lastName}</h2>
-                {age && <p>Age: {age} </p>}
-                {gender && <p>Gender: {gender} </p>}
-                {about && <p><span className="font-bold">About : </span>{about}</p>}
-                {skills && <p>Skills: {skills}</p>}
-                <div className="card-actions justify-center my-4">
-                {showButtons && <button className="btn btn-primary" onClick={()=>{reviewRequest("rejected",_id); setShowButtons(false)}}>Reject</button>}
-               {showButtons && <button className="btn btn-secondary" onClick={()=>{reviewRequest("accepted",_id);setShowButtons(false)}}>Accept</button>}
-                </div>
-            </div>
-        </div>
-    )
-}
+  return (
+    <Card className="w-full max-w-3xl mx-auto flex flex-col sm:flex-row items-start gap-5 p-6 rounded-2xl shadow-md mb-6">
+      {/* Image */}
+      <img
+        className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-primary"
+        src={photoUrl}
+        alt="user"
+      />
 
-export default RequestCard
+      {/* Content */}
+      <CardContent className="px-0 sm:px-2 w-full">
+        <h2 className="text-xl font-semibold mb-1">
+          {firstName} {lastName}
+        </h2>
+        {age && <p className="text-sm text-muted-foreground">Age: {age}</p>}
+        {gender && <p className="text-sm text-muted-foreground">Gender: {gender}</p>}
+        {about && (
+          <p className="text-sm mt-2 text-gray-800 dark:text-gray-300">
+            <span className="font-semibold">About:</span> {about}
+          </p>
+        )}
+        {skills && (
+          <div className="mt-2 flex flex-wrap gap-2">
+            {(Array.isArray(skills) ? skills : skills.split(" ")).map((skill, idx) => (
+              <span
+                key={idx}
+                className="bg-gray-100 dark:bg-gray-800 text-xs font-medium px-2 py-1 rounded text-gray-700 dark:text-gray-200"
+              >
+                {skill.trim()}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Buttons */}
+        {showButtons && (
+          <div className="mt-4 flex gap-4">
+            <Button
+              variant="destructive"
+              onClick={() => {
+                reviewRequest("rejected", _id);
+                setShowButtons(false);
+              }}
+            >
+              Reject
+            </Button>
+            <Button
+              onClick={() => {
+                reviewRequest("accepted", _id);
+                setShowButtons(false);
+              }}
+            >
+              Accept
+            </Button>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
+
+export default RequestCard;

@@ -1,99 +1,99 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FE_DOMAIN_URL } from '../../utils/constants';
 import { addUser } from '../../utils/userSlice';
 import EditProfileCard from './EdilProfileCard';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { toast } from 'sonner';
 
-const EditProfile1 = ({loggedInUser}) => {
+const EditProfile1 = ({ loggedInUser }) => {
+  const dispatch = useDispatch();
 
-    const dispatch=useDispatch();
-    const [firstName,setfirstName]=useState(loggedInUser.firstName || '');
-    const [lastName,setlastName]=useState(loggedInUser.lastName || '');
-    const [photoUrl,setPhotoUrl]=useState(loggedInUser.photoUrl || '')
-    const  [gender,setGender]=useState(loggedInUser.gender || '');
-    const  [age,setAge]=useState(loggedInUser.age || '');
-    const  [skills,setSkills]=useState(loggedInUser.skills || '' );
-    const  [about,setAbout]=useState(loggedInUser.about || '');
-    const [error,setError]=useState('')
-    const [showToast,setShowToast]=useState(false)
+  const [firstName, setFirstName] = useState(loggedInUser.firstName || '');
+  const [lastName, setLastName] = useState(loggedInUser.lastName || '');
+  const [photoUrl, setPhotoUrl] = useState(loggedInUser.photoUrl || '');
+  const [gender, setGender] = useState(loggedInUser.gender || '');
+  const [age, setAge] = useState(loggedInUser.age || '');
+  const [skills, setSkills] = useState(loggedInUser.skills || '');
+  const [about, setAbout] = useState(loggedInUser.about || '');
+  const [error, setError] = useState('');
 
-        const handleEdit = async () => {
-            try {
-              const response = await axios.patch(
-                FE_DOMAIN_URL + "/profile/edit",
-                {
-                  firstName,
-                  lastName,
-                  photoUrl,
-                  gender,
-                  age,
-                  about,
-                  skills,
-                },
-                { withCredentials: true }
-              );
-              console.log(response)
-              dispatch(addUser(response?.data?.data?.loggedInUser));
-              setShowToast(true);
-            setTimeout(()=>{
-                     setShowToast(false);
-                 },3000)
-            } catch (err) {
-              setError(err?.response?.data || "Something went wrong");
-              console.error(err);
-            }
-          };
-          
-    
+  const handleEdit = async () => {
+    try {
+      const response = await axios.patch(
+        FE_DOMAIN_URL + '/profile/edit',
+        {
+          firstName,
+          lastName,
+          photoUrl,
+          gender,
+          age,
+          about,
+          skills,
+        },
+        { withCredentials: true }
+      );
+      dispatch(addUser(response?.data?.data?.loggedInUser));
+      toast.success('Profile updated successfully!');
+    } catch (err) {
+      setError(err?.response?.data || 'Something went wrong');
+      toast.error('Update failed.');
+    }
+  };
 
   return (
-    <>
-         <div className='flex justify-center my-20'>
-        <div className='flex justify-center gap-10'>
-            <div className="card card-dash bg-base-300 w-96">
-            <div className="card-body">
-                <h1 className="card-title justify-center text-2xl font-bold">Edit Profile</h1>
-                <div className=''>
-                <fieldset className="fieldset">
-                    <legend className="fieldset-legend ">First Name</legend>
-                   
-                    <input type="text" className="input"  value={firstName} onChange={(e)=>setfirstName(e.target.value)} placeholder="Type here" />
-                    <legend className="fieldset-legend ">Last Name</legend>
-                    <input type="text" className="input" value={lastName}  onChange={(e)=>setlastName(e.target.value)} placeholder="Type here" />
-                    <legend className="fieldset-legend ">Photo Url</legend>
-                    <input  type="text" className="input" value={photoUrl} onChange={(e)=>setPhotoUrl(e.target.value)} placeholder="Type here" />
-                    <legend className="fieldset-legend ">Age</legend>
-                    <input type="text" className="input" value={age}  onChange={(e)=>setAge(e.target.value)} placeholder="Type here" />
-                    <legend className="fieldset-legend ">Gender</legend>
-                    <input type="text" className="input" value={gender}  onChange={(e)=>setGender(e.target.value)} placeholder="Type here" />
-                    <legend className="fieldset-legend ">About</legend>
-                    <input type="text" className="input" value={about}  onChange={(e)=>setAbout(e.target.value)} placeholder="Type here" />
-                    <legend className="fieldset-legend ">Skills</legend>
-                    <input type="text" className="input" value={skills}  onChange={(e)=>setSkills(e.target.value)} placeholder="Type here" />
-                </fieldset>
-            
-             
-                </div>
-                <p className=' text-red-500'>{error}</p>
-                <div className="card-actions justify-center my-4">
-                <button className="btn btn-primary" onClick={handleEdit} >Save Profile</button>
-                </div>
+    <div className="max-w-7xl mx-auto px-4 md:px-8 my-10">
+      <div className="flex flex-col md:flex-row justify-center items-start gap-10">
+        {/* Edit Form */}
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-6 text-center">Edit Profile</h2>
+          <div className="space-y-4">
+            <div>
+              <Label>First Name</Label>
+              <Input value={firstName} onChange={(e) => setFirstName(e.target.value)} />
             </div>
-        </div>  
+            <div>
+              <Label>Last Name</Label>
+              <Input value={lastName} onChange={(e) => setLastName(e.target.value)} />
+            </div>
+            <div>
+              <Label>Photo URL</Label>
+              <Input value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
+            </div>
+            <div>
+              <Label>Age</Label>
+              <Input value={age} onChange={(e) => setAge(e.target.value)} />
+            </div>
+            <div>
+              <Label>Gender</Label>
+              <Input value={gender} onChange={(e) => setGender(e.target.value)} />
+            </div>
+            <div>
+              <Label>About</Label>
+              <Input value={about} onChange={(e) => setAbout(e.target.value)} />
+            </div>
+            <div>
+              <Label>Skills</Label>
+              <Input value={skills} onChange={(e) => setSkills(e.target.value)} />
+            </div>
 
-       <EditProfileCard  user={{firstName,lastName,age,gender,skills,photoUrl,about}}/> 
-    
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+            <Button className="w-full mt-4" onClick={handleEdit}>
+              Save Profile
+            </Button>
+          </div>
+        </div>
+
+        {/* Profile Card Preview */}
+        <EditProfileCard
+          user={{ firstName, lastName, age, gender, skills, photoUrl, about }}
+        />
+      </div>
     </div>
-</div>
-            {showToast && <div className="toast toast-top toast-center">
-                <div className="alert alert-success">
-                    <span>Profile saved successfully.</span>
-                </div>    
-            </div>}
-    </>
+  );
+};
 
-  )
-}
-
-export default EditProfile1
+export default EditProfile1;
