@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
+import { Separator } from "@/Components/ui/separator";
 
 const EditProfileCard = ({ user }) => {
   const { photoUrl, firstName, lastName, age, about, gender, skills } = user;
