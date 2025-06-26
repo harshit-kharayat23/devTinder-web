@@ -93,23 +93,30 @@ const Login = () => {
             />
           </div>
 
-          <div className="space-y-1 relative">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="pr-10"
-            />
-            <span
-              className="absolute right-3 top-[38px] text-gray-500 cursor-pointer"
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
-              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-            </span>
-          </div>
+       <div className="space-y-1 relative">
+  <Label htmlFor="password">Password</Label>
+  <div className="relative">
+    <Input
+      id="password"
+      type={showPassword ? "text" : "password"}
+      placeholder="Enter your password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      className="pr-10"
+    />
+    <span
+      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+      onClick={() => setShowPassword((prev) => !prev)}
+    >
+      {showPassword ? (
+        <EyeOff className="w-5 h-5" />
+      ) : (
+        <Eye className="w-5 h-5" />
+      )}
+    </span>
+  </div>
+</div>
+
 
           {error && <p className="text-sm text-red-500">{error}</p>}
 

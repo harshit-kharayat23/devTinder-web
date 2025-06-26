@@ -41,7 +41,7 @@ const RequestCard = ({ user }) => {
         {age && <p className="text-sm text-muted-foreground">Age: {age}</p>}
         {gender && <p className="text-sm text-muted-foreground">Gender: {gender}</p>}
         {about && (
-          <p className="text-sm mt-2 text-gray-800 dark:text-gray-300">
+          <p className="text-sm mt-2 text-gray-800 dark:text-gray-600">
             <span className="font-semibold">About:</span> {about}
           </p>
         )}
@@ -61,7 +61,7 @@ const RequestCard = ({ user }) => {
         {/* Buttons */}
         {showButtons && (
           <div className="mt-4 flex gap-4">
-            <Button
+            <Button className="text-sm px-4 py-2 bg-blue-500 text-white"
               variant="destructive"
               onClick={() => {
                 reviewRequest("rejected", _id);
@@ -70,7 +70,7 @@ const RequestCard = ({ user }) => {
             >
               Reject
             </Button>
-            <Button
+            <Button className="cursor-pointer bg-pink-500 text-white"
               onClick={() => {
                 reviewRequest("accepted", _id);
                 setShowButtons(false);

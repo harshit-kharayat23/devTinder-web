@@ -16,12 +16,12 @@ const ConnectionCard = ({ user }) => {
       />
 
       {/* Details */}
-      <CardContent className="px-0 sm:px-2 w-full">
+      <CardContent className="px-0 sm:px-2 w-full" >
         <h2 className="text-xl font-semibold mb-1">{firstName + " " + lastName}</h2>
         {age && <p className="text-sm text-muted-foreground">Age: {age}</p>}
         {gender && <p className="text-sm text-muted-foreground">Gender: {gender}</p>}
         {about && (
-          <p className="text-sm mt-2 text-gray-800 dark:text-gray-300">
+          <p className="text-sm mt-2 text-gray-800 dark:text-gray-800">
             <span className="font-semibold">About:</span> {about}
           </p>
         )}
@@ -41,7 +41,7 @@ const ConnectionCard = ({ user }) => {
         {/* Chat Button */}
         <div className="mt-4 flex justify-end">
           <Link to={`/chat/${_id}`}>
-            <Button className="text-sm px-4 py-2">Chat</Button>
+            <Button className="text-sm px-4 py-2 bg-blue-500 text-white">Chat</Button>
           </Link>
         </div>
       </CardContent>

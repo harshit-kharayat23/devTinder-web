@@ -21,7 +21,8 @@ const UserCard = ({ user }) => {
   };
 
   return (
-    <Card className="w-full max-w-md shadow-lg rounded-xl overflow-hidden transition-transform hover:scale-[1.02] duration-200">
+    <Card className="w-full max-w-md shadow-lg rounded-xl overflow-hidden transition-transform hover:scale-[1.02] duration-200 bg-gradient-to-br from-pink-100 via-white to-blue-100/70 backdrop-blur-sm">
+
       <CardHeader className="flex flex-col items-center">
         <img
           src={photoUrl}
@@ -60,10 +61,10 @@ const UserCard = ({ user }) => {
         )}
 
         <div className="flex justify-center gap-4 mt-6">
-          <Button className="cursor-pointer"  variant="outline" onClick={() => handleFeed("ignored", _id)}>
+          <Button className="cursor-pointer bg-blue-400 text-white"  variant="outline" onClick={() => handleFeed("ignored", _id)}>
             Ignore
           </Button>
-          <Button  className="cursor-pointer" onClick={() => handleFeed("interested", _id)}>
+          <Button  className="cursor-pointer bg-pink-500 text-white" onClick={() => handleFeed("interested", _id)}>
             Interested
           </Button>
         </div>
