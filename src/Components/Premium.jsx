@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "@/Components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/Components/ui/card";
+import { Separator } from "@/Components/ui/separator";
 import { FE_DOMAIN_URL } from "../../utils/constants";
 
 const Premium = () => {

@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeRequest } from "../../utils/requestSlice";
 import { FE_DOMAIN_URL } from "../../utils/constants";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/Components/ui/card";
+import { Button } from "@/Components/ui/button";
 
 const RequestCard = ({ user }) => {
   const [showButtons, setShowButtons] = useState(true);

@@ -4,10 +4,10 @@ import { addUser } from "../../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FE_DOMAIN_URL } from "../../utils/constants";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Input } from "@/Components/ui/input";
+import { Label } from "@/Components/ui/label";
+import { Card, CardContent, CardHeader } from "@/Components/ui/card";
+import { Button } from "@/Components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {

@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import { FE_DOMAIN_URL } from '../../utils/constants';
 import { addUser } from '../../utils/userSlice';
 import EditProfileCard from './EdilProfileCard';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
+import { Input } from '@/Components/ui/input';
+import { Button } from '@/Components/ui/button';
+import { Label } from '@/Components/ui/label';
 import { toast } from 'sonner';
 
 const EditProfile1 = ({ loggedInUser }) => {
