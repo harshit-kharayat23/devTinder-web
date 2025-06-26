@@ -4,9 +4,9 @@ import { createSocketConnections } from "../../utils/socket";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { FE_DOMAIN_URL } from "../../utils/constants";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Input } from "@/Components/ui/input";
+import { Button } from "@/Components/ui/button";
+import { ScrollArea } from "@/Components/ui/scroll-area";
 
 const Chat = () => {
   const { targetUserId } = useParams();
