@@ -35,9 +35,10 @@ const Navbar = () => {
     <div className="sticky top-0 z-50 w-full bg-white shadow-md border-b py-3 px-4 sm:px-6 lg:px-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
         {/* Branding */}
-        <h1 className="text-2xl md:text-3xl font-bold cursor-pointer select-none">
+       <Link to="/feed"> <h1 className="text-2xl md:text-3xl font-bold cursor-pointer select-none">
           dev<span className="text-rose-600">Tinder</span>
         </h1>
+        </Link>
 
         {/* Right section */}
         {user ? (

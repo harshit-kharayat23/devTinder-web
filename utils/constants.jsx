@@ -2,4 +2,4 @@
 
 
 export const FE_DOMAIN_URL=
-        location.hostname=== "localhost"? "https://devtinder-1-6gm8.onrender.com":"/api"
+        location.hostname=== "localhost"? "http://localhost:3000":"/api"
