@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/Components/ui/card";
+import { Button } from "@/Components/ui/button";
 
 const ConnectionCard = ({ user }) => {
   const { photoUrl, firstName, lastName, age, about, gender, skills, _id } = user;
