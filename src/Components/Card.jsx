@@ -3,9 +3,9 @@ import React from "react";
 import { FE_DOMAIN_URL } from "../../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../../utils/feedSlice";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
+import { Button } from "@/Components/ui/button";
+import { Separator } from "@/Components/ui/separator";
 
 const UserCard = ({ user }) => {
   const { _id, photoUrl, firstName, lastName, age, about, gender, skills } = user;
